@@ -22,7 +22,7 @@ Rectangle {
 
     readonly property string barPosition: Settings.data.bar.position
     readonly property bool isVertical: barPosition === "left" || barPosition === "right"
-    readonly property string updateScriptDir: (pluginApi?.pluginDir || "/home/lysec/.config/noctalia/plugins/update-count") + "/scripts"
+    readonly property string updateScriptDir: (pluginApi?.pluginDir || Settings.configDir + "/plugins/update-count") + "/scripts"
 
     implicitWidth: isVertical ? Style.capsuleHeight : layout.implicitWidth + Style.marginM * 2
     implicitHeight: isVertical ? layout.implicitHeight + Style.marginM * 2 : Style.capsuleHeight
@@ -65,7 +65,7 @@ Rectangle {
 
     Process {
         id: updateDataHandler
-        command: ["bash", root.updateScriptDir + "/update-count.sh"]
+        command: ["sh", "-c", root.updateScriptDir + "/update-count.sh"]
         stdout: StdioCollector {
             onStreamFinished: {
                 var count = parseInt(text.trim());
@@ -76,7 +76,7 @@ Rectangle {
 
     Process {
         id: updateSystemHandler
-        command: ["sh", "-c", root.configuredTerminal + " " + (pluginApi?.pluginDir || "/home/lysec/.config/noctalia/plugins/update-count") + "/scripts/update.sh"]
+        command: ["sh", "-c", root.configuredTerminal + " " + (pluginApi?.pluginDir || Settings.configDir + "/plugins/update-count") + "/scripts/update.sh"]
     }
 
     Timer {
@@ -141,7 +141,7 @@ Rectangle {
             }
 
             onEntered: {
-                root.color = Color.mOnHover;
+                root.color = Qt.lighter(Style.capsuleColor, 1.1);
                 buildTooltip();
             }
 
