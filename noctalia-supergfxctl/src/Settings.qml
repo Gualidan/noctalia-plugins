@@ -1,7 +1,7 @@
 /*
  * SPDX-FileCopyrightText: 2025 cod3ddot@proton.me
  *
- * SPDX-License-Identifier: AGPL-3.0-or-later
+ * SPDX-License-Identifier: MIT
  */
 
 import QtQuick
@@ -29,6 +29,8 @@ ColumnLayout {
 
     NToggle {
         Layout.fillWidth: true
+        // TODO: enable once implemented
+        enabled: false
         label: root.pluginApi.tr("settings.listenToNotifications.label")
         description: root.pluginApi.tr("settings.listenToNotifications.description")
         checked: root.pluginCore.pluginSettings.listenToNotifications
@@ -37,6 +39,8 @@ ColumnLayout {
 
     NToggle {
         Layout.fillWidth: true
+        // TODO: enable once implemented
+        enabled: false
         label: root.pluginApi.tr("settings.polling.label")
         description: root.pluginApi.tr("settings.polling.description")
         checked: root.pluginCore.pluginSettings.polling
@@ -46,7 +50,9 @@ ColumnLayout {
     NValueSlider {
         Layout.fillWidth: true
         text: root.pluginCore.pluginSettings.pollingInterval + "ms"
-        enabled: root.pluginCore.pluginSettings.polling
+        // TODO: enable once implemented
+        // enabled: root.pluginCore.pluginSettings.polling
+        enabled: false
         from: 1000
         to: 5000
         stepSize: 250

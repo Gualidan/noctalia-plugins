@@ -4,15 +4,15 @@
 	"settings": {
 		"debug": {
 			"label": "Debug mode",
-			"description": ""
+			"description": "Prints debug output in console"
 		},
 		"polling": {
 			"label": "Polling",
-			"description": ""
+			"description": "Enable/disable polling of supergfxctl process"
 		},
 		"listenToNotifications": {
 			"label": "Listen to notifications",
-			"description": ""
+			"description": "Listen to rog-control-center notifications"
 		}
 	},
 	"context-menu": {

@@ -1,7 +1,7 @@
 /*
  * SPDX-FileCopyrightText: 2025 cod3ddot@proton.me
  *
- * SPDX-License-Identifier: AGPL-3.0-or-later
+ * SPDX-License-Identifier: MIT
  */
 
 import QtQuick
@@ -42,12 +42,13 @@ Item {
     QtObject {
         id: pluginSettings
 
+        readonly property var manifest: root.pluginApi?.manifest.defaultSettings
         readonly property var user: root.pluginApi?.pluginSettings
 
-        property bool debug: user.debug || false
-        property bool polling: user.polling || false
-        property int pollingInterval: user.pollingInterval || 3000
-        property bool listenToNotifications: user.listenToNotifications || true
+        property bool debug: user.debug ?? manifest.debug ?? false
+        property bool polling: user.polling ?? manifest.polling ?? true
+        property int pollingInterval: user.pollingInterval ?? manifest.pollingInterval ?? 3000
+        property bool listenToNotifications: user.listenToNotifications ?? manifest.listenToNotifications ?? true
     }
 
     readonly property bool available: sgfx.available
@@ -147,19 +148,19 @@ Item {
 
     function log(...msg): void {
         if (root.pluginSettings.debug) {
-        	Logger.i(root.pluginId, `v${pluginVersion}/${version}`, ...msg);
+            Logger.i(root.pluginId, `v${pluginVersion}/${version}`, ...msg);
         }
     }
 
     function warn(...msg): void {
         if (root.pluginSettings.debug) {
-        	Logger.w(root.pluginId, `v${pluginVersion}/${version}`, ...msg);
+            Logger.w(root.pluginId, `v${pluginVersion}/${version}`, ...msg);
         }
     }
 
     function error(...msg): void {
         if (root.pluginSettings.debug) {
-        	Logger.e(root.pluginId, `v${pluginVersion}/${version}`, ...msg);
+            Logger.e(root.pluginId, `v${pluginVersion}/${version}`, ...msg);
         }
     }
 
@@ -168,8 +169,8 @@ Item {
         running: false
         command: ["supergfxctl", "--version", "--get", "--supported", "--pend-action", "--pend-mode"]
         stdout: StdioCollector {
-        	// TODO: supergfxctl sometimes takes time to exit after printing
-         	// investigate or find a workaround
+            // TODO: supergfxctl sometimes takes time to exit after printing
+            // investigate or find a workaround
             onStreamFinished: sgfx.parseOutput(text.trim())
         }
         onExited: exitCode => {
@@ -183,7 +184,7 @@ Item {
         id: pollingTimer
         interval: root.pluginSettings.pollingInterval
         repeat: true
-        running: root.pluginSettings.available && root.polling && !root.busy
+        running: root.pluginSettings.available && root.pluginSettings.polling && !root.busy
 
         onTriggered: {
             if (root.busy) {
@@ -353,7 +354,7 @@ Item {
         }
 
         function parseOutput(text: string): bool {
-        	root.log("[parseOutput] start");
+            root.log("[parseOutput] start");
 
             if (text == "") {
                 available = false;
@@ -377,9 +378,7 @@ Item {
             // mainly so that .log functions print correct version
             version = lineVersion;
 
-            root.log(
-            	`[parseOutput] version=${lineVersion}, mode=${lineMode}, pendingMode=${linePendMode}, pendingAction=${linePendAction}`
-            );
+            root.log(`[parseOutput] version=${lineVersion}, mode=${lineMode}, pendingMode=${linePendMode}, pendingAction=${linePendAction}`);
 
             if (linePendMode === "Unknown") {
                 linePendMode = "None";
@@ -409,7 +408,7 @@ Item {
                     newSupportedMask |= 1 << modeEnums[i];
                 }
             } else {
-            	root.warn("[parseOutput] no supported modes reported");
+                root.warn("[parseOutput] no supported modes reported");
             }
 
             const newPendingAction = actionEnum[linePendAction] ?? Main.SGFXAction.Nothing;
@@ -420,20 +419,14 @@ Item {
                 mode = newMode;
                 pendingMode = newPendMode;
                 pendingAction = requiredAction(sgfx.mode, newPendMode);
-                root.log(
-                    "[parseOutput] state updated:", `mode=${mode}, pendingMode=${pendingMode}, pendingAction=${pendingAction}`
-                );
+                root.log("[parseOutput] state updated:", `mode=${mode}, pendingMode=${pendingMode}, pendingAction=${pendingAction}`);
             } else {
-            	root.log(
-                    "[parseOutput] pending mode already set manually, skipping mode update"
-                );
+                root.log("[parseOutput] pending mode already set manually, skipping mode update");
             }
             supportedModesMask = newSupportedMask;
             available = true;
 
-            root.log(
-                `[parseOutput] completed successfully (available=${available}, supportedMask=0x${newSupportedMask.toString(16)})`
-            );
+            root.log(`[parseOutput] completed successfully (available=${available}, supportedMask=0x${newSupportedMask.toString(16)})`);
 
             return available;
         }

@@ -1,7 +1,7 @@
 /*
  * SPDX-FileCopyrightText: 2025 cod3ddot@proton.me
  *
- * SPDX-License-Identifier: AGPL-3.0-or-later
+ * SPDX-License-Identifier: MIT
  */
 
 import QtQuick
@@ -24,7 +24,6 @@ Item {
     property ShellScreen screen
     property string widgetId: ""
     property string section: ""
-    // not required
     property int sectionWidgetIndex: -1
     property int sectionWidgetsCount: 0
 
@@ -34,7 +33,7 @@ Item {
     readonly property string currentLabel: pluginCore?.getModeLabel(pluginCore.mode) ?? ""
     readonly property real currentIconOpacity: pluginCore?.available ? 1.0 : 0.5
 
-    readonly property string pendingActionLabel: pluginCore?.hasPendingAction ? pluginCore?.getActionLabel(pluginCore.pendingAction) : "";
+    readonly property string pendingActionLabel: pluginCore?.hasPendingAction ? pluginCore?.getActionLabel(pluginCore.pendingAction) : ""
 
     implicitWidth: pill.width
     implicitHeight: pill.height
@@ -47,10 +46,10 @@ Item {
         icon: root.currentIcon
         autoHide: false
         tooltipText: {
-        	if (!pluginCore?.hasPendingAction) {
-         		return currentLabel;
-         	}
-        	return currentLabel + " | " + root.pendingActionLabel;
+            if (!pluginCore?.hasPendingAction) {
+                return currentLabel;
+            }
+            return currentLabel + " | " + root.pendingActionLabel;
         }
 
         onClicked: root.pluginApi?.openPanel(root.screen)
@@ -58,8 +57,8 @@ Item {
         onRightClicked: {
             var popupMenuWindow = PanelService.getPopupMenuWindow(root.screen);
             if (popupMenuWindow) {
-            	popupMenuWindow.showContextMenu(contextMenu);
-             	contextMenu.openAtItem(pill, root.screen);
+                popupMenuWindow.showContextMenu(contextMenu);
+                contextMenu.openAtItem(pill, root.screen);
             }
         }
 
@@ -84,7 +83,7 @@ Item {
         id: contextMenu
 
         model: [
-        	{
+            {
                 "label": root.currentLabel,
                 "action": "current",
                 "icon": root.currentIcon,
