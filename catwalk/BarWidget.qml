@@ -120,14 +120,7 @@ Rectangle {
         anchors.horizontalCenterOffset: -3
         anchors.verticalCenterOffset: -1
         
-        width: {
-            switch (root.density) {
-            case "compact":
-                return Math.max(1, root.width * 0.85);
-            default:
-                return Math.max(1, root.width * 0.85);
-            }
-        }
+        width: Math.max(1, root.width * 0.85)
         height: width
         
         // Ensures the SVG renders sharply at any size
