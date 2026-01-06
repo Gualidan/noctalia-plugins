@@ -202,6 +202,18 @@
         "System"
       ],
       "lastUpdated": "2026-01-04T21:11:31-05:00"
+    },
+    {
+      "id": "world-clock",
+      "name": "World Clock",
+      "version": "1.0.0",
+      "author": "Lokize",
+      "description": "Display time from multiple timezones around the world with automatic rotation.",
+      "repository": "https://github.com/noctalia-dev/noctalia-plugins",
+      "minNoctaliaVersion": "3.6.0",
+      "license": "MIT",
+      "tags": [],
+      "lastUpdated": "2026-01-04T19:48:13-03:00"
     }
   ]
 }
