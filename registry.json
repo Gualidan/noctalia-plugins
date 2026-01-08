@@ -77,28 +77,6 @@
       "lastUpdated": "2026-01-07T08:58:45-05:00"
     },
     {
-      "id": "hyprland-cheatsheet",
-      "name": "Keybind Cheatsheet (Hyprland)",
-      "version": "1.2.0",
-      "author": "blacku",
-      "description": "Dynamic keyboard shortcuts cheatsheet that reads and displays Hyprland keybindings. Requires Hyprland window manager.",
-      "minNoctaliaVersion": "3.6.0",
-      "license": "MIT",
-      "tags": [],
-      "lastUpdated": "2026-01-07T19:13:13+01:00"
-    },
-    {
-      "id": "hyprland-steam-overlay",
-      "name": "Steam Overlay (Hyprland)",
-      "version": "1.6.0",
-      "author": "blacku",
-      "description": "Steam overlay with automatic window management and chat notifications for Hyprland. Requires Hyprland window manager.",
-      "minNoctaliaVersion": "3.6.0",
-      "license": "MIT",
-      "tags": [],
-      "lastUpdated": "2026-01-07T19:13:13+01:00"
-    },
-    {
       "id": "kaomoji-provider",
       "name": "Kaomoji Provider",
       "version": "1.0.2",
@@ -239,13 +217,13 @@
     {
       "id": "steam-price-watcher",
       "name": "Steam Price Watcher",
-      "version": "1.1.0",
+      "version": "1.0.1",
       "author": "Lokize",
       "description": "Monitor Steam game prices and get notified when they reach your target price",
       "minNoctaliaVersion": "3.6.0",
       "license": "MIT",
       "tags": [],
-      "lastUpdated": "2026-01-07T21:52:06+01:00"
+      "lastUpdated": "2026-01-07T21:51:09-05:00"
     },
     {
       "id": "todo",
