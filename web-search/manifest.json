@@ -1,0 +1,14 @@
+{
+  "id": "web-search",
+  "name": "Web Search",
+  "version": "0.1.0",
+  "minNoctaliaVersion": "4.0.0",
+  "author": "Gualidan",
+  "license": "MIT",
+  "repository": "https://github.com/Gualidan/noctalia-plugins",
+  "description": "A launcher provider for web search",
+  "entryPoints": {
+    "main": "Main.qml",
+    "launcherProvider": "LauncherProvider.qml"
+  }
+}
