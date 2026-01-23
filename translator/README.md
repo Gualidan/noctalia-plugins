@@ -81,7 +81,9 @@ You can use either the language code (e.g., `fr`, `ja`, `ru`) or the language na
 
 ## Configuration
 
-- **Translation Backend**: Choose the translation service to use (currently supports Google Translate)
+- **Translation Backend**: Choose the translation service to use (currently supports Google Translate and DeepL/DeepL Free)
+- **Realtime Translation**: Toggle between translating as you type or only upon pressing Enter (useful for saving API usage)
+- **API Key**: The API key required for premium backends like DeepL
 
 ## IPC Commands
 
@@ -97,6 +99,10 @@ qs -c noctalia-shell ipc call plugin:translator toggle "fr"
 
 # You can use language codes or names (fr, french, français, etc.)
 qs -c noctalia-shell ipc call plugin:translator toggle "english"
+
+# Open translator with text to be translated (e.g. selected text)
+qs -c noctalia-shell ipc call plugin:translator toggle "english" "$(wl-paste -n -p)"
+
 ```
 
 ### Integration with Keybindings
@@ -114,6 +120,7 @@ Add this to your Noctalia keybinds configuration:
 
 - With empty string `""`: Opens the launcher with `>translate ` already entered, ready for you to select a language and type text to translate.
 - With a language parameter: Opens the launcher with `>translate [language] ` already entered, ready for you to type text to translate to that language.
+- With both language and text parameter: Opens the launcher with `>translate [language] [text]` already entered, ready for you to hit the enter or to see the result (if you enabled realtime translation)
 
 ## Requirements
 

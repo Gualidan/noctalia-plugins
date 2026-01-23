@@ -8,7 +8,7 @@ Item {
 
   IpcHandler {
     target: "plugin:translator"
-    function toggle(language: string) {
+    function toggle(language: string, text: string) {
       if (!pluginApi) return;
       
       pluginApi.withCurrentScreen(screen => {
@@ -25,6 +25,10 @@ Item {
           if (langCode) {
             newSearchText += langCode + " ";
           }
+        }
+        
+        if (text) {
+            newSearchText += text;
         }
         
         if (!launcherPanel.isPanelOpen) {

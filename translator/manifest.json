@@ -1,7 +1,7 @@
 {
   "id": "translator",
   "name": "Translator",
-  "version": "1.1.1",
+  "version": "1.2.1",
   "minNoctaliaVersion": "1.0.0",
   "author": "Cleboost",
   "license": "MIT",
@@ -20,7 +20,8 @@
   },
   "metadata": {
     "defaultSettings": {
-      "backend": "google"
+      "backend": "google",
+      "realTime": true
     }
   }
 }
