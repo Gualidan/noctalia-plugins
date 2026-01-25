@@ -418,13 +418,13 @@
       "version": "1.2.2",
       "author": "Cleboost",
       "description": "Quick translate in launcher",
-      "repository": "https://github.com/cleboost/noctalia-translator",
+      "repository": "https://github.com/noctalia-dev/noctalia-plugins",
       "minNoctaliaVersion": "1.0.0",
       "license": "MIT",
       "tags": [
         "Launcher"
       ],
-      "lastUpdated": "2026-01-24T12:11:17+11:00"
+      "lastUpdated": "2026-01-25T13:43:56-05:00"
     },
     {
       "id": "unicode-picker",
