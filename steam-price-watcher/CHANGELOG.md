@@ -19,5 +19,3 @@ All notable changes for this plugin are documented in this file.
 - Localized UI strings available in multiple languages.
 
 ---
-
-> Note: Add new entries at the top (most recent first).
